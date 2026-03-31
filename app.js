@@ -432,7 +432,7 @@ function buildDoughnut() {
     return c.name;
   });
 
-  const colors = [tc.blue, tc.red, tc.yellow, tc.green, '#a855f7', '#f97316', '#06b6d4', '#84cc16'];
+  const colors = ['#1a73e8', '#ea4335', '#fbbc04', '#34a853', '#a855f7', '#f97316', '#06b6d4', '#84cc16'];
 
   // Update title
   document.getElementById('doughnutTitle').textContent = 'Распределение бюджета (' + current.label + ')';
