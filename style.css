@@ -1,17 +1,17 @@
 /* === Vinigrandi Dashboard — Google Ads Style === */
 
 :root, [data-theme="light"] {
-  --bg: #f0f2f5;
-  --surface: rgba(255, 255, 255, 0.85);
+  --bg: #c8ccd4;
+  --surface: rgba(255, 255, 255, 0.55);
   --surface-solid: #ffffff;
-  --surface-hover: rgba(241, 243, 244, 0.9);
-  --border: rgba(255, 255, 255, 0.6);
-  --border-light: rgba(255, 255, 255, 0.5);
-  --glass-blur: 20px;
-  --glass-shadow: 0 8px 32px rgba(60, 64, 67, 0.14), 0 2px 6px rgba(60, 64, 67, 0.08);
-  --text: #202124;
-  --text-secondary: #5f6368;
-  --text-tertiary: #80868b;
+  --surface-hover: rgba(255, 255, 255, 0.65);
+  --border: rgba(255, 255, 255, 0.45);
+  --border-light: rgba(255, 255, 255, 0.35);
+  --glass-blur: 28px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --text: #000000;
+  --text-secondary: #1d1d1f;
+  --text-tertiary: #48484a;
   --google-blue: #1a73e8;
   --google-blue-hover: #1765cc;
   --google-red: #ea4335;
@@ -24,8 +24,8 @@
   --shadow-sm: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
   --shadow-md: 0 1px 3px 0 rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15);
   --shadow-lg: 0 1px 3px 0 rgba(60,64,67,.3), 0 8px 16px 4px rgba(60,64,67,.15);
-  --radius: 8px;
-  --radius-lg: 12px;
+  --radius: 12px;
+  --radius-lg: 16px;
   --font-display: 'Google Sans', 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Roboto', 'Segoe UI', sans-serif;
   --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,10 +104,11 @@ body::before {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse 60% 50% at 15% 10%, rgba(26, 115, 232, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 85% 25%, rgba(234, 67, 53, 0.08) 0%, transparent 55%),
-    radial-gradient(ellipse 55% 45% at 50% 80%, rgba(251, 188, 4, 0.10) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 35% at 80% 90%, rgba(52, 168, 83, 0.09) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 60% at 10% 5%, rgba(26, 115, 232, 0.28) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 92% 18%, rgba(234, 67, 53, 0.20) 0%, transparent 50%),
+    radial-gradient(ellipse 65% 55% at 45% 85%, rgba(251, 188, 4, 0.24) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 45% at 85% 92%, rgba(52, 168, 83, 0.20) 0%, transparent 45%),
+    radial-gradient(ellipse 40% 35% at 50% 40%, rgba(160, 140, 180, 0.15) 0%, transparent 50%),
     var(--bg);
   transition: background 0.4s ease;
 }
@@ -157,6 +158,12 @@ body::before {
   top: 0;
   z-index: 50;
   transition: background var(--transition), border-color var(--transition);
+}
+[data-theme="light"] .header {
+  background: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  backdrop-filter: blur(32px) saturate(180%);
+  border-bottom-color: rgba(255, 255, 255, 0.4);
 }
 [data-theme="dark"] .header {
   background: rgba(42, 45, 58, 0.88);
