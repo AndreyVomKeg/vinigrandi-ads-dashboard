@@ -176,9 +176,7 @@ body::after {
   border-bottom-color: rgba(255, 255, 255, 0.5);
 }
 [data-theme="dark"] .header {
-  background: rgba(42, 45, 58, 0.88);
-  -webkit-backdrop-filter: blur(32px);
-  backdrop-filter: blur(32px);
+  background: #2a2d3a;
   border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 [data-theme="dark"] .totals-bar,
@@ -187,9 +185,9 @@ body::after {
 [data-theme="dark"] .chart-card,
 [data-theme="dark"] .table-section,
 [data-theme="dark"] .work-section {
-  background: rgba(255, 255, 255, 0.10);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-top-color: rgba(255, 255, 255, 0.10);
+  background: #303344;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-top-color: rgba(255, 255, 255, 0.06);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.30);
 }
 .header-inner {   padding: 0 24px;
