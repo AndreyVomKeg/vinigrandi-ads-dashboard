@@ -36,6 +36,7 @@ let selectedMonthIdx = monthsData.length - 1; // Default: latest month (Feb 2026
     updateIcon();
     createAllCharts();
     buildDoughnut();
+    buildSeasonalityChart();
   });
 
   function updateIcon() {
@@ -526,11 +527,159 @@ function buildWorkList() {
   });
 }
 
+// === Benchmark Comparison ===
+function buildBenchmarks() {
+  const totalCost = monthsData.reduce((s, m) => s + m.cost, 0);
+  const totalClicks = monthsData.reduce((s, m) => s + m.clicks, 0);
+  const totalImpressions = monthsData.reduce((s, m) => s + m.impressions, 0);
+  const totalConversions = monthsData.reduce((s, m) => s + m.conversions, 0);
+  const avgCPA = totalConversions > 0 ? totalCost / totalConversions : 0;
+  const avgCPC = totalClicks > 0 ? totalCost / totalClicks : 0;
+  const avgCTR = totalImpressions > 0 ? (totalClicks / totalImpressions) * 100 : 0;
+  const avgCR = totalClicks > 0 ? (totalConversions / totalClicks) * 100 : 0;
+
+  // Market benchmarks (eCommerce / Food & Alcohol, Germany, 2025-2026)
+  const benchmarks = [
+    {
+      label: 'CPA', yours: avgCPA, yoursFormat: '\u20ac' + avgCPA.toFixed(2),
+      market: 42.00, marketFormat: '\u20ac42,00',
+      lowerBetter: true, color: 'green'
+    },
+    {
+      label: 'CPC', yours: avgCPC, yoursFormat: '\u20ac' + avgCPC.toFixed(2),
+      market: 1.08, marketFormat: '\u20ac1,08',
+      lowerBetter: true, color: 'green'
+    },
+    {
+      label: 'CR', yours: avgCR, yoursFormat: avgCR.toFixed(2) + '%',
+      market: 2.81, marketFormat: '2,81%',
+      lowerBetter: false, color: 'blue'
+    },
+    {
+      label: 'CTR', yours: avgCTR, yoursFormat: avgCTR.toFixed(2) + '%',
+      market: 6.66, marketFormat: '6,66%',
+      lowerBetter: false, color: 'blue'
+    }
+  ];
+
+  const grid = document.getElementById('benchmarkGrid');
+  grid.innerHTML = '';
+
+  benchmarks.forEach(b => {
+    const diff = b.lowerBetter
+      ? ((b.market - b.yours) / b.market * 100)
+      : ((b.yours - b.market) / b.market * 100);
+    const isGood = diff > 5;
+    const isBad = diff < -5;
+    const badgeClass = isGood ? 'good' : isBad ? 'bad' : 'neutral';
+    const badgeIcon = isGood ? 'trending_up' : isBad ? 'trending_down' : 'trending_flat';
+    const badgeText = isGood
+      ? (b.lowerBetter ? 'На ' + Math.abs(diff).toFixed(0) + '% ниже рынка' : 'На ' + Math.abs(diff).toFixed(0) + '% выше рынка')
+      : isBad
+        ? (b.lowerBetter ? 'На ' + Math.abs(diff).toFixed(0) + '% выше рынка' : 'На ' + Math.abs(diff).toFixed(0) + '% ниже рынка')
+        : 'На уровне рынка';
+
+    const colorClass = 'color-' + b.color;
+
+    const card = document.createElement('div');
+    card.className = 'benchmark-card';
+    card.innerHTML = `
+      <div class="benchmark-metric-label">${b.label}</div>
+      <div class="benchmark-values">
+        <span class="benchmark-yours ${colorClass}">${b.yoursFormat}</span>
+        <span class="benchmark-vs">vs</span>
+        <span class="benchmark-market">${b.marketFormat}</span>
+      </div>
+      <div class="benchmark-badge ${badgeClass}">
+        <span class="material-symbols-outlined">${badgeIcon}</span>
+        ${badgeText}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// === Seasonality Chart ===
+let seasonalityChart = null;
+function buildSeasonalityChart() {
+  if (seasonalityChart) seasonalityChart.destroy();
+  const tc = getThemeColors();
+
+  // Wine demand seasonality index (1.0 = average)
+  const seasonalityIndex = [0.70, 0.75, 0.90, 0.95, 0.85, 1.00, 1.05, 1.00, 1.10, 1.15, 1.30, 1.50, 0.70, 0.75];
+  const labels = monthsData.map(m => m.label);
+  const conversions = monthsData.map(m => m.conversions);
+
+  // Normalize seasonality to scale with conversions for visual comparison
+  const maxConv = Math.max(...conversions);
+  const seasonScaled = seasonalityIndex.map(s => s * (maxConv / 1.5) * 0.8);
+
+  const canvas = document.getElementById('chartSeasonality');
+  if (!canvas) return;
+
+  seasonalityChart = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: '\u041a\u043e\u043d\u0432\u0435\u0440\u0441\u0438\u0438',
+          data: conversions,
+          backgroundColor: conversions.map((_, i) => i === selectedMonthIdx ? tc.green : tc.green + '44'),
+          borderRadius: 4,
+          order: 2,
+          yAxisID: 'y',
+        },
+        {
+          label: '\u0421\u0435\u0437\u043e\u043d\u043d\u043e\u0441\u0442\u044c \u0441\u043f\u0440\u043e\u0441\u0430 \u043d\u0430 \u0432\u0438\u043d\u043e',
+          data: seasonalityIndex,
+          type: 'line',
+          borderColor: '#f97316',
+          backgroundColor: '#f9731622',
+          pointBackgroundColor: '#f97316',
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          borderWidth: 2.5,
+          tension: 0.4,
+          fill: true,
+          order: 1,
+          yAxisID: 'y1',
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', align: 'end', labels: { color: tc.text, usePointStyle: true, pointStyle: 'rectRounded', padding: 16, font: { size: 12 } } },
+        tooltip: {
+          backgroundColor: tc.surface, titleColor: tc.text, bodyColor: tc.textSecondary, borderColor: tc.border, borderWidth: 1, cornerRadius: 8, padding: 12,
+          callbacks: {
+            label: (ctx) => {
+              if (ctx.datasetIndex === 0) return '\u041a\u043e\u043d\u0432\u0435\u0440\u0441\u0438\u0438: ' + ctx.raw;
+              return '\u0421\u0435\u0437\u043e\u043d\u043d\u044b\u0439 \u0438\u043d\u0434\u0435\u043a\u0441: ' + ctx.raw.toFixed(2) + ' (' + (ctx.raw > 1 ? '\u0432\u044b\u0441\u043e\u043a\u0438\u0439 \u0441\u043f\u0440\u043e\u0441' : ctx.raw < 0.85 ? '\u043d\u0438\u0437\u043a\u0438\u0439 \u0441\u043f\u0440\u043e\u0441' : '\u0441\u0440\u0435\u0434\u043d\u0438\u0439 \u0441\u043f\u0440\u043e\u0441') + ')';
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: tc.textSecondary, font: { size: 11 }, maxRotation: 45, minRotation: 0 } },
+        y: { position: 'left', grid: { color: tc.border, drawBorder: false }, ticks: { color: tc.textSecondary, font: { size: 11 } }, beginAtZero: true, title: { display: true, text: '\u041a\u043e\u043d\u0432\u0435\u0440\u0441\u0438\u0438', color: tc.textSecondary, font: { size: 11 } } },
+        y1: { position: 'right', grid: { display: false }, ticks: { color: '#f97316', font: { size: 11 }, callback: v => v.toFixed(1) }, min: 0.4, max: 1.8, title: { display: true, text: '\u0418\u043d\u0434\u0435\u043a\u0441 \u0441\u0435\u0437\u043e\u043d\u043d\u043e\u0441\u0442\u0438', color: '#f97316', font: { size: 11 } } }
+      }
+    }
+  });
+  canvas.parentElement.style.height = '320px';
+}
+
 // === Init ===
 buildTotals();
 buildMonthSelector();
 buildKPIs();
 createAllCharts();
 buildDoughnut();
+buildBenchmarks();
+buildSeasonalityChart();
 buildTable();
 buildWorkList();
