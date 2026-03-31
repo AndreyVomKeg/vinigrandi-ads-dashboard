@@ -127,9 +127,12 @@ body::after {
 [data-theme="dark"] body::after {
   opacity: 1;
 }
+[data-theme="dark"] body {
+  background: #b0b4be;
+}
 [data-theme="dark"] body::before,
 :root:not([data-theme="light"]) body::before {
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(180, 185, 195, 0.45);
 }
 
 /* === Theme Toggle === */
