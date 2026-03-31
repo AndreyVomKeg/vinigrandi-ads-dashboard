@@ -160,10 +160,10 @@ body::before {
   transition: background var(--transition), border-color var(--transition);
 }
 [data-theme="light"] .header {
-  background: rgba(255, 252, 247, 0.82);
+  background: rgba(255, 252, 247, 0.60);
   -webkit-backdrop-filter: blur(32px) saturate(180%);
   backdrop-filter: blur(32px) saturate(180%);
-  border-bottom-color: rgba(255, 250, 240, 0.5);
+  border-bottom-color: rgba(255, 250, 240, 0.35);
 }
 [data-theme="dark"] .header {
   background: rgba(42, 45, 58, 0.88);
@@ -315,8 +315,8 @@ body::before {
   font-weight: 500;
   padding: 6px 14px;
   border-radius: 20px;
-  border: 1px solid var(--border);
-  background: var(--bg);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.55);
   color: var(--text-secondary);
   cursor: pointer;
   transition: all var(--transition);
@@ -331,6 +331,10 @@ body::before {
   background: var(--google-blue);
   border-color: var(--google-blue);
   color: #fff;
+}
+[data-theme="dark"] .month-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 [data-theme="dark"] .month-btn.active {
   background: var(--google-blue);
