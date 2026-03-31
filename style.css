@@ -99,7 +99,7 @@ body {
   position: relative;
 }
 [data-theme="light"] body {
-  background: #b0b4be url('city-lights.jpg') center/cover fixed no-repeat;
+  background: #b0b4be;
 }
 body::before {
   content: '';
@@ -110,6 +110,23 @@ body::before {
 }
 [data-theme="light"] body::before {
   background: rgba(180, 185, 195, 0.45);
+}
+/* City lights background — separate layer for iOS compatibility */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: url('city-lights.jpg') center/cover no-repeat;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+[data-theme="light"] body::after {
+  opacity: 1;
+}
+[data-theme="dark"] body::after {
+  opacity: 0;
+  pointer-events: none;
 }
 [data-theme="dark"] body::before,
 :root:not([data-theme="light"]) body::before {
