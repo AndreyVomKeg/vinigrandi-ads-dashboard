@@ -599,8 +599,10 @@ tbody tr:last-child td { border-bottom: none; }
   .main { padding: 16px; gap: 16px; }
   .kpi-value { font-size: 22px; }
   .work-list { grid-template-columns: 1fr; }
-  .header-inner { grid-template-columns: 1fr; }
-    .header-meta { justify-self: start; }
+    .header-inner { grid-template-columns: 1fr auto; gap: 12px; }
+      .logo-group { grid-column: 1; grid-row: 1; }
+    .theme-toggle { grid-column: 2; grid-row: 1; justify-self: end; }
+    .header-meta { grid-column: 1 / -1; grid-row: 2; justify-self: start; }
 
 /* === Animations === */
 @keyframes fadeInUp {
