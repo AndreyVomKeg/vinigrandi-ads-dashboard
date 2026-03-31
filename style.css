@@ -1,12 +1,12 @@
 /* === Vinigrandi Dashboard — Google Ads Style === */
 
 :root, [data-theme="light"] {
-  --bg: #c8ccd4;
-  --surface: rgba(255, 255, 255, 0.55);
+  --bg: #b0b4be;
+  --surface: rgba(255, 255, 255, 0.68);
   --surface-solid: #ffffff;
-  --surface-hover: rgba(255, 255, 255, 0.65);
-  --border: rgba(255, 255, 255, 0.45);
-  --border-light: rgba(255, 255, 255, 0.35);
+  --surface-hover: rgba(255, 255, 255, 0.78);
+  --border: rgba(255, 255, 255, 0.50);
+  --border-light: rgba(255, 255, 255, 0.40);
   --glass-blur: 28px;
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   --text: #000000;
@@ -104,11 +104,11 @@ body::before {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse 70% 60% at 10% 5%, rgba(26, 115, 232, 0.28) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 92% 18%, rgba(234, 67, 53, 0.20) 0%, transparent 50%),
-    radial-gradient(ellipse 65% 55% at 45% 85%, rgba(251, 188, 4, 0.24) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 45% at 85% 92%, rgba(52, 168, 83, 0.20) 0%, transparent 45%),
-    radial-gradient(ellipse 40% 35% at 50% 40%, rgba(160, 140, 180, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 60% at 10% 5%, rgba(26, 115, 232, 0.30) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 92% 18%, rgba(234, 67, 53, 0.22) 0%, transparent 50%),
+    radial-gradient(ellipse 65% 55% at 45% 85%, rgba(251, 188, 4, 0.26) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 45% at 85% 92%, rgba(52, 168, 83, 0.22) 0%, transparent 45%),
+    radial-gradient(ellipse 40% 35% at 50% 40%, rgba(160, 140, 180, 0.16) 0%, transparent 50%),
     var(--bg);
   transition: background 0.4s ease;
 }
