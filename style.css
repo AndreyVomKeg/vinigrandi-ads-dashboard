@@ -249,8 +249,8 @@ body::before {
 .totals-item { text-align: center; }
 .totals-item-label {
   font-size: 11px;
-  font-weight: 500;
-  color: var(--text-tertiary);
+  font-weight: 600;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 4px;
@@ -258,11 +258,15 @@ body::before {
 .totals-item-value {
   font-family: var(--font-display);
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 600;
   font-variant-numeric: tabular-nums lining-nums;
   color: var(--text);
 }
-.totals-item-value.accent { color: var(--google-blue); }
+.totals-item-value.color-blue { color: var(--google-blue); }
+.totals-item-value.color-green { color: var(--google-green); }
+.totals-item-value.color-red { color: var(--google-red); }
+.totals-item-value.color-yellow { color: #e8a000; }
+[data-theme="dark"] .totals-item-value.color-yellow { color: var(--google-yellow); }
 
 .kpi-section-label {
   font-family: var(--font-display);
@@ -372,7 +376,7 @@ body::before {
 }
 .kpi-label {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -385,11 +389,16 @@ body::before {
 .kpi-value {
   font-family: var(--font-display);
   font-size: 28px;
-  font-weight: 500;
+  font-weight: 600;
   font-variant-numeric: tabular-nums lining-nums;
   color: var(--text);
   line-height: 1.2;
 }
+.kpi-value.color-blue { color: var(--google-blue); }
+.kpi-value.color-red { color: var(--google-red); }
+.kpi-value.color-green { color: var(--google-green); }
+.kpi-value.color-yellow { color: #e8a000; }
+[data-theme="dark"] .kpi-value.color-yellow { color: var(--google-yellow); }
 .kpi-delta {
   display: inline-flex;
   align-items: center;

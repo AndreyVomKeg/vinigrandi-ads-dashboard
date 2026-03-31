@@ -99,19 +99,19 @@ function buildTotals() {
   const avgCPC = totalClicks > 0 ? totalCost / totalClicks : 0;
 
   const items = [
-    { label: 'Расходы', value: fmtEur(totalCost), accent: true },
-    { label: 'Конверсии', value: fmt(totalConversions) },
-    { label: 'Ср. CPA', value: fmtEur(avgCPA) },
-    { label: 'Клики', value: fmt(totalClicks) },
-    { label: 'Показы', value: fmt(totalImpressions) },
-    { label: 'Ср. CPC', value: fmtEur(avgCPC) },
+    { label: 'Расходы', value: fmtEur(totalCost), color: 'blue' },
+    { label: 'Конверсии', value: fmt(totalConversions), color: 'green' },
+    { label: 'Ср. CPA', value: fmtEur(avgCPA), color: '' },
+    { label: 'Клики', value: fmt(totalClicks), color: '' },
+    { label: 'Показы', value: fmt(totalImpressions), color: '' },
+    { label: 'Ср. CPC', value: fmtEur(avgCPC), color: '' },
   ];
 
   const bar = document.getElementById('totalsBar');
   bar.innerHTML = items.map(i => `
     <div class="totals-item">
       <div class="totals-item-label">${i.label}</div>
-      <div class="totals-item-value${i.accent ? ' accent' : ''}">${i.value}</div>
+      <div class="totals-item-value${i.color ? ' color-' + i.color : ''}">${i.value}</div>
     </div>
   `).join('');
 }
@@ -195,7 +195,7 @@ function buildKPIs() {
         <span class="material-symbols-outlined">${kpi.icon}</span>
         ${kpi.label}
       </div>
-      <div class="kpi-value">${kpi.value}</div>
+      <div class="kpi-value color-${kpi.color}">${kpi.value}</div>
       ${d ? `<div class="kpi-delta ${dirClass}">
         <span class="material-symbols-outlined">${arrow}</span>
         ${pctText}
