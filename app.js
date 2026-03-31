@@ -35,6 +35,7 @@ let selectedMonthIdx = monthsData.length - 1; // Default: latest month (Feb 2026
     root.setAttribute('data-theme', theme);
     updateIcon();
     createAllCharts();
+    buildDoughnut();
   });
 
   function updateIcon() {
