@@ -99,12 +99,12 @@ function buildTotals() {
   const avgCPC = totalClicks > 0 ? totalCost / totalClicks : 0;
 
   const items = [
-    { label: 'Расходы', value: fmtEur(totalCost), color: 'blue' },
-    { label: 'Конверсии', value: fmt(totalConversions), color: 'green' },
-    { label: 'Ср. CPA', value: fmtEur(avgCPA), color: '' },
-    { label: 'Клики', value: fmt(totalClicks), color: '' },
-    { label: 'Показы', value: fmt(totalImpressions), color: '' },
-    { label: 'Ср. CPC', value: fmtEur(avgCPC), color: '' },
+    { label: 'Расходы', value: fmtEur(totalCost), color: 'yellow' },
+    { label: 'Конверсии', value: fmt(totalConversions), color: 'blue' },
+    { label: 'Ср. CPA', value: fmtEur(avgCPA), color: 'green' },
+    { label: 'Клики', value: fmt(totalClicks), color: 'blue' },
+    { label: 'Показы', value: fmt(totalImpressions), color: 'red' },
+    { label: 'Ср. CPC', value: fmtEur(avgCPC), color: 'green' },
   ];
 
   const bar = document.getElementById('totalsBar');
