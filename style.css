@@ -176,7 +176,9 @@ body::after {
   border-bottom-color: rgba(255, 255, 255, 0.5);
 }
 [data-theme="dark"] .header {
-  background: #2a2d3a;
+  background: rgba(30, 33, 48, 0.85);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
   border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 [data-theme="dark"] .totals-bar,
@@ -185,7 +187,9 @@ body::after {
 [data-theme="dark"] .chart-card,
 [data-theme="dark"] .table-section,
 [data-theme="dark"] .work-section {
-  background: #303344;
+  background: rgba(30, 33, 48, 0.78);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-top-color: rgba(255, 255, 255, 0.06);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.30);
