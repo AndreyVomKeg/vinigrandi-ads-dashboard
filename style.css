@@ -125,17 +125,11 @@ body::after {
   opacity: 1;
 }
 [data-theme="dark"] body::after {
-  opacity: 0;
-  pointer-events: none;
+  opacity: 1;
 }
 [data-theme="dark"] body::before,
 :root:not([data-theme="light"]) body::before {
-  background:
-    radial-gradient(ellipse 65% 55% at 10% 5%, rgba(138, 180, 248, 0.15) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 45% at 90% 20%, rgba(242, 139, 130, 0.10) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 45% 85%, rgba(253, 214, 99, 0.12) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 85% 90%, rgba(129, 201, 149, 0.10) 0%, transparent 50%),
-    var(--bg);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 /* === Theme Toggle === */
