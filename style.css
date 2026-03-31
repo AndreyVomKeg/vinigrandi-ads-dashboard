@@ -125,11 +125,17 @@ body::after {
   opacity: 1;
 }
 [data-theme="dark"] body::after {
-  opacity: 1;
+  opacity: 0;
+  pointer-events: none;
 }
 [data-theme="dark"] body::before,
 :root:not([data-theme="light"]) body::before {
-  background: rgba(15, 17, 30, 0.55);
+  background:
+    radial-gradient(ellipse 65% 55% at 10% 5%, rgba(138, 180, 248, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 90% 20%, rgba(242, 139, 130, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 45% 85%, rgba(253, 214, 99, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 85% 90%, rgba(129, 201, 149, 0.10) 0%, transparent 50%),
+    var(--bg);
 }
 
 /* === Theme Toggle === */
@@ -176,10 +182,10 @@ body::after {
   border-bottom-color: rgba(255, 255, 255, 0.5);
 }
 [data-theme="dark"] .header {
-  background: rgba(15, 17, 30, 0.80);
-  -webkit-backdrop-filter: blur(32px) saturate(150%);
-  backdrop-filter: blur(32px) saturate(150%);
-  border-bottom-color: rgba(255, 255, 255, 0.06);
+  background: rgba(42, 45, 58, 0.88);
+  -webkit-backdrop-filter: blur(32px);
+  backdrop-filter: blur(32px);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 [data-theme="dark"] .totals-bar,
 [data-theme="dark"] .month-selector-wrap,
@@ -187,12 +193,10 @@ body::after {
 [data-theme="dark"] .chart-card,
 [data-theme="dark"] .table-section,
 [data-theme="dark"] .work-section {
-  background: rgba(15, 17, 30, 0.65);
-  -webkit-backdrop-filter: blur(32px) saturate(150%);
-  backdrop-filter: blur(32px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-top-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.40);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-top-color: rgba(255, 255, 255, 0.10);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.30);
 }
 .header-inner {   padding: 0 24px;
   max-width: 1280px;
