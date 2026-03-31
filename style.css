@@ -98,19 +98,18 @@ body {
   transition: background var(--transition), color var(--transition);
   position: relative;
 }
+[data-theme="light"] body {
+  background: #b0b4be url('city-lights.jpg') center/cover fixed no-repeat;
+}
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -1;
-  background:
-    radial-gradient(ellipse 70% 60% at 10% 5%, rgba(26, 115, 232, 0.30) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 92% 18%, rgba(234, 67, 53, 0.22) 0%, transparent 50%),
-    radial-gradient(ellipse 65% 55% at 45% 85%, rgba(251, 188, 4, 0.26) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 45% at 85% 92%, rgba(52, 168, 83, 0.22) 0%, transparent 45%),
-    radial-gradient(ellipse 40% 35% at 50% 40%, rgba(160, 140, 180, 0.16) 0%, transparent 50%),
-    var(--bg);
-  transition: background 0.4s ease;
+  transition: background 0.4s ease, opacity 0.4s ease;
+}
+[data-theme="light"] body::before {
+  background: rgba(180, 185, 195, 0.45);
 }
 [data-theme="dark"] body::before,
 :root:not([data-theme="light"]) body::before {
