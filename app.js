@@ -441,7 +441,7 @@ function buildDoughnut() {
     type: 'doughnut',
     data: {
       labels: shortLabels,
-      datasets: [{ data: campaigns.map(c => c.cost), backgroundColor: colors.slice(0, campaigns.length), borderColor: tc.surface, borderWidth: 3, hoverOffset: 6 }]
+      datasets: [{ data: campaigns.map(c => c.cost), backgroundColor: colors.slice(0, campaigns.length), borderColor: 'rgba(255,255,255,0.7)', borderWidth: 3, hoverOffset: 6 }]
     },
     options: {
       responsive: true, maintainAspectRatio: true, cutout: '65%',
