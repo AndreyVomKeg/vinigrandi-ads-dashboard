@@ -272,7 +272,7 @@ function createAllCharts() {
 
   const gridColor = tc.border;
   const gridOpts = { color: gridColor, drawBorder: false };
-  const xOpts = { grid: { display: false }, ticks: { font: { size: 11 }, maxRotation: 45, minRotation: 0 } };
+  const xOpts = { grid: { display: false }, ticks: { color: tc.textSecondary, font: { size: 11 }, maxRotation: 45, minRotation: 0 } };
 
   const tooltipOpts = {
     backgroundColor: tc.surface,
@@ -333,7 +333,7 @@ function createAllCharts() {
         }
       },
       plugins: {
-        legend: { position: 'top', align: 'end', labels: { usePointStyle: true, pointStyle: 'rectRounded', padding: 16, font: { size: 12 } } },
+        legend: { position: 'top', align: 'end', labels: { color: tc.text, usePointStyle: true, pointStyle: 'rectRounded', padding: 16, font: { size: 12 } } },
         tooltip: { ...tooltipOpts,
           callbacks: {
             label: (ctx) => ctx.dataset.label === 'Расходы (€)'
@@ -344,8 +344,8 @@ function createAllCharts() {
       },
       scales: {
         x: xOpts,
-        y: { position: 'left', grid: gridOpts, ticks: { font: { size: 11 }, callback: v => '€' + (v >= 1000 ? (v/1000).toFixed(1) + 'K' : v) }, beginAtZero: true },
-        y1: { position: 'right', grid: { display: false }, ticks: { font: { size: 11 } }, beginAtZero: true }
+        y: { position: 'left', grid: gridOpts, ticks: { color: tc.textSecondary, font: { size: 11 }, callback: v => '€' + (v >= 1000 ? (v/1000).toFixed(1) + 'K' : v) }, beginAtZero: true },
+        y1: { position: 'right', grid: { display: false }, ticks: { color: tc.textSecondary, font: { size: 11 } }, beginAtZero: true }
       }
     }
   });
@@ -362,7 +362,7 @@ function createAllCharts() {
       responsive: true, maintainAspectRatio: false,
       onClick: (e, elements) => { if (elements.length > 0) { selectedMonthIdx = elements[0].index; updateAll(); createAllCharts(); } },
       plugins: { legend: { display: false }, tooltip: { ...tooltipOpts, callbacks: { label: (ctx) => `CPA: €${ctx.raw.toFixed(2)}` } } },
-      scales: { x: xOpts, y: { grid: gridOpts, ticks: { font: { size: 11 }, callback: v => '€' + v }, beginAtZero: true } }
+      scales: { x: xOpts, y: { grid: gridOpts, ticks: { color: tc.textSecondary, font: { size: 11 }, callback: v => '€' + v }, beginAtZero: true } }
     }
   });
   document.getElementById('chartCPA').parentElement.style.height = '280px';
@@ -378,7 +378,7 @@ function createAllCharts() {
       responsive: true, maintainAspectRatio: false,
       onClick: (e, elements) => { if (elements.length > 0) { selectedMonthIdx = elements[0].index; updateAll(); createAllCharts(); } },
       plugins: { legend: { display: false }, tooltip: tooltipOpts },
-      scales: { x: xOpts, y: { grid: gridOpts, ticks: { font: { size: 11 }, callback: v => v >= 1000 ? (v/1000).toFixed(1) + 'K' : v }, beginAtZero: true } }
+      scales: { x: xOpts, y: { grid: gridOpts, ticks: { color: tc.textSecondary, font: { size: 11 }, callback: v => v >= 1000 ? (v/1000).toFixed(1) + 'K' : v }, beginAtZero: true } }
     }
   });
   document.getElementById('chartClicks').parentElement.style.height = '280px';
@@ -394,7 +394,7 @@ function createAllCharts() {
       responsive: true, maintainAspectRatio: false,
       onClick: (e, elements) => { if (elements.length > 0) { selectedMonthIdx = elements[0].index; updateAll(); createAllCharts(); } },
       plugins: { legend: { display: false }, tooltip: { ...tooltipOpts, callbacks: { label: (ctx) => `Показы: ${ctx.raw.toLocaleString('de-DE')}` } } },
-      scales: { x: xOpts, y: { grid: gridOpts, ticks: { font: { size: 11 }, callback: v => v >= 1000 ? (v/1000).toFixed(0) + 'K' : v }, beginAtZero: true } }
+      scales: { x: xOpts, y: { grid: gridOpts, ticks: { color: tc.textSecondary, font: { size: 11 }, callback: v => v >= 1000 ? (v/1000).toFixed(0) + 'K' : v }, beginAtZero: true } }
     }
   });
   document.getElementById('chartImpressions').parentElement.style.height = '280px';
@@ -410,7 +410,7 @@ function createAllCharts() {
       responsive: true, maintainAspectRatio: false,
       onClick: (e, elements) => { if (elements.length > 0) { selectedMonthIdx = elements[0].index; updateAll(); createAllCharts(); } },
       plugins: { legend: { display: false }, tooltip: { ...tooltipOpts, callbacks: { label: (ctx) => `CPC: €${ctx.raw.toFixed(2)}` } } },
-      scales: { x: xOpts, y: { grid: gridOpts, ticks: { font: { size: 11 }, callback: v => '€' + v.toFixed(2) }, beginAtZero: true } }
+      scales: { x: xOpts, y: { grid: gridOpts, ticks: { color: tc.textSecondary, font: { size: 11 }, callback: v => '€' + v.toFixed(2) }, beginAtZero: true } }
     }
   });
   document.getElementById('chartCPC').parentElement.style.height = '280px';
@@ -445,7 +445,7 @@ function buildDoughnut() {
     options: {
       responsive: true, maintainAspectRatio: true, cutout: '65%',
       plugins: {
-        legend: { position: 'bottom', labels: { usePointStyle: true, pointStyle: 'rectRounded', padding: 10, font: { size: 11 } } },
+        legend: { position: 'bottom', labels: { color: tc.text, usePointStyle: true, pointStyle: 'rectRounded', padding: 10, font: { size: 11 } } },
         tooltip: {
           backgroundColor: tc.surface, titleColor: tc.text, bodyColor: tc.textSecondary, borderColor: tc.border, borderWidth: 1, cornerRadius: 8, padding: 12,
           callbacks: { label: (ctx) => `€${ctx.raw.toFixed(2)} (${((ctx.raw / totalCost) * 100).toFixed(1)}%)` }
