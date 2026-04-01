@@ -376,7 +376,7 @@ body::after {
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 16px;
+  gap: 24px;
 }
 .kpi-card {
   background: var(--surface);
@@ -452,7 +452,7 @@ body::after {
 .charts-row {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 16px;
+  gap: 24px;
 }
 .chart-card {
   background: var(--surface);
@@ -770,6 +770,7 @@ tbody tr:last-child td { border-bottom: none; }
 @media (max-width: 640px) {
   .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .main { padding: 12px; gap: 12px; }
+  .charts-row { gap: 12px; }
   .kpi-card { padding: 14px; }
   .kpi-value { font-size: 36px; line-height: 1.1; }
   .totals-bar { padding: 14px; }
