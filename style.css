@@ -798,23 +798,11 @@ tbody tr:last-child td { border-bottom: none; }
   to { opacity: 1; transform: translateY(0); }
 }
 .kpi-card, .chart-card, .table-section, .work-section {
-  opacity: 0;
-  transform: translateY(12px);
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-.kpi-card.visible, .chart-card.visible, .table-section.visible, .work-section.visible {
-  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-.kpi-card.visible:nth-child(1) { animation-delay: 0.05s; }
-.kpi-card.visible:nth-child(2) { animation-delay: 0.1s; }
-.kpi-card.visible:nth-child(3) { animation-delay: 0.15s; }
-.kpi-card.visible:nth-child(4) { animation-delay: 0.2s; }
-.kpi-card.visible:nth-child(5) { animation-delay: 0.25s; }
-.kpi-card.visible:nth-child(6) { animation-delay: 0.3s; }
 
 @media (prefers-reduced-motion: reduce) {
   .kpi-card, .chart-card, .table-section, .work-section {
-    opacity: 1;
-    transform: none;
     animation: none;
   }
 }

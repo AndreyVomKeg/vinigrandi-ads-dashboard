@@ -690,17 +690,3 @@ buildSeasonalityChart();
 buildTable();
 buildWorkList();
 
-// === Scroll-triggered animations ===
-(function initScrollAnimations() {
-  const targets = document.querySelectorAll('.kpi-card, .chart-card, .table-section, .work-section');
-  if (!targets.length) return;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  targets.forEach(t => observer.observe(t));
-})();
