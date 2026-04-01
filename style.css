@@ -119,10 +119,12 @@ body::after {
   z-index: -2;
   background: url('city-lights.jpg') center/cover no-repeat;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.4s ease, filter 0.4s ease;
 }
 [data-theme="light"] body::after {
   opacity: 1;
+  filter: blur(8px);
+  transform: scale(1.02);
 }
 [data-theme="dark"] body::after {
   opacity: 1;
