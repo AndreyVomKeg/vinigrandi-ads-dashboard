@@ -107,6 +107,8 @@ body::before {
   inset: 0;
   z-index: -1;
   transition: background 0.4s ease, opacity 0.4s ease;
+  will-change: transform;
+  transform: translateZ(0);
 }
 [data-theme="light"] body::before {
   background: rgba(180, 185, 195, 0.45);
@@ -120,6 +122,8 @@ body::after {
   background: url('city-lights.jpg') center/cover no-repeat;
   opacity: 0;
   transition: opacity 0.4s ease, filter 0.4s ease;
+  will-change: transform;
+  transform: translateZ(0);
 }
 [data-theme="light"] body::after {
   opacity: 1;
@@ -173,6 +177,8 @@ body::after {
   top: 0;
   z-index: 50;
   transition: background var(--transition), border-color var(--transition);
+  will-change: transform;
+  transform: translateZ(0);
 }
 [data-theme="light"] .header {
   background: rgba(255, 255, 255, 0.88);
@@ -261,6 +267,9 @@ body::after {
   transition: all var(--transition);
   animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
   box-shadow: var(--glass-shadow);
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style paint;
 }
 .totals-bar:hover { box-shadow: var(--shadow-md); }
 .totals-item { text-align: center; }
@@ -319,6 +328,9 @@ body::after {
   transition: all var(--transition);
   animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
   box-shadow: var(--glass-shadow);
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style paint;
 }
 .month-selector-label {
   display: flex;
@@ -391,6 +403,9 @@ body::after {
   position: relative;
   overflow: hidden;
   box-shadow: var(--glass-shadow);
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style paint;
 }
 .kpi-card:hover {
   box-shadow: var(--shadow-md);
@@ -465,6 +480,9 @@ body::after {
   transition: all var(--transition);
   overflow: hidden;
   box-shadow: var(--glass-shadow);
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style paint;
 }
 .chart-card:hover {
   box-shadow: var(--shadow-md);
@@ -504,6 +522,9 @@ body::after {
   overflow: hidden;
   transition: all var(--transition);
   box-shadow: var(--glass-shadow);
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style paint;
 }
 .table-header {
   padding: 16px 20px;
@@ -582,6 +603,9 @@ tbody tr:last-child td { border-bottom: none; }
   padding: 20px;
   transition: all var(--transition);
   box-shadow: var(--glass-shadow);
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style paint;
 }
 .work-header {
   display: flex;
@@ -638,6 +662,9 @@ tbody tr:last-child td { border-bottom: none; }
   transition: all var(--transition);
   box-shadow: var(--glass-shadow);
   animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style paint;
 }
 [data-theme="dark"] .benchmark-section {
   background: rgba(30, 33, 48, 0.78);
