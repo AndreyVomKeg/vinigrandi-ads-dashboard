@@ -717,10 +717,10 @@ tbody tr:last-child td { border-bottom: none; }
 .benchmark-badge {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   font-size: 11px;
-  font-weight: 600;
-  padding: 3px 8px;
+  font-weight: 500;
+  padding: 2px 6px;
   border-radius: 12px;
 }
 .benchmark-badge.good {

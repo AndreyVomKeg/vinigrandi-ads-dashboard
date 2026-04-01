@@ -566,27 +566,43 @@ function buildBenchmarks() {
   grid.innerHTML = '';
 
   benchmarks.forEach(b => {
+    // diff > 0 means "good" (we beat market), diff < 0 means "bad"
     const diff = b.lowerBetter
       ? ((b.market - b.yours) / b.market * 100)
       : ((b.yours - b.market) / b.market * 100);
     const isGood = diff > 5;
     const isBad = diff < -5;
     const badgeClass = isGood ? 'good' : isBad ? 'bad' : 'neutral';
-    const badgeIcon = isGood ? 'trending_up' : isBad ? 'trending_down' : 'trending_flat';
-    const badgeText = isGood
-      ? (b.lowerBetter ? 'На ' + Math.abs(diff).toFixed(0) + '% ниже рынка' : 'На ' + Math.abs(diff).toFixed(0) + '% выше рынка')
-      : isBad
-        ? (b.lowerBetter ? 'На ' + Math.abs(diff).toFixed(0) + '% выше рынка' : 'На ' + Math.abs(diff).toFixed(0) + '% ниже рынка')
-        : 'На уровне рынка';
 
-    const colorClass = 'color-' + b.color;
+    // Arrow matches direction word: "выше" → arrow_upward, "ниже" → arrow_downward
+    let badgeText, badgeIcon;
+    if (isGood) {
+      if (b.lowerBetter) {
+        badgeIcon = 'arrow_downward';
+        badgeText = Math.abs(diff).toFixed(0) + '% ниже рынка';
+      } else {
+        badgeIcon = 'arrow_upward';
+        badgeText = Math.abs(diff).toFixed(0) + '% выше рынка';
+      }
+    } else if (isBad) {
+      if (b.lowerBetter) {
+        badgeIcon = 'arrow_upward';
+        badgeText = Math.abs(diff).toFixed(0) + '% выше рынка';
+      } else {
+        badgeIcon = 'arrow_downward';
+        badgeText = Math.abs(diff).toFixed(0) + '% ниже рынка';
+      }
+    } else {
+      badgeIcon = 'remove';
+      badgeText = 'На уровне рынка';
+    }
 
     const card = document.createElement('div');
     card.className = 'benchmark-card';
     card.innerHTML = `
       <div class="benchmark-metric-label">${b.label}</div>
       <div class="benchmark-values">
-        <span class="benchmark-yours ${colorClass}">${b.yoursFormat}</span>
+        <span class="benchmark-yours color-${b.color}">${b.yoursFormat}</span>
         <span class="benchmark-vs">vs</span>
         <span class="benchmark-market">${b.marketFormat}</span>
       </div>
