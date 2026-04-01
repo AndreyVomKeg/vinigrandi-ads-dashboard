@@ -611,8 +611,11 @@ tbody tr:last-child td { border-bottom: none; }
   border-radius: 6px;
   font-size: 13px;
   color: var(--text-secondary);
-  background: var(--bg);
+  background: rgba(255, 255, 255, 0.55);
   transition: background var(--transition);
+}
+[data-theme="dark"] .work-item {
+  background: rgba(255, 255, 255, 0.10);
 }
 .work-item:hover { background: var(--surface-hover); }
 .work-item .material-symbols-outlined {
