@@ -670,7 +670,7 @@ tbody tr:last-child td { border-bottom: none; }
   gap: 12px;
 }
 .benchmark-card {
-  background: var(--bg);
+  background: rgba(255, 255, 255, 0.55);
   border-radius: var(--radius);
   padding: 16px;
   text-align: center;
@@ -804,6 +804,10 @@ tbody tr:last-child td { border-bottom: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .kpi-card, .chart-card, .table-section, .work-section {
+    animation: none;
+  }
+}
+-section, .work-section {
     animation: none;
   }
 }
