@@ -89,6 +89,8 @@ function updateAll() {
   buildKPIs();
   buildTable();
   buildDoughnut();
+  createAllCharts();
+  buildSeasonalityChart();
 }
 
 // === Period Totals ===
@@ -331,7 +333,6 @@ function createAllCharts() {
         if (elements.length > 0) {
           selectedMonthIdx = elements[0].index;
           updateAll();
-          createAllCharts();
         }
       },
       plugins: {
@@ -362,7 +363,7 @@ function createAllCharts() {
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      onClick: (e, elements) => { if (elements.length > 0) { selectedMonthIdx = elements[0].index; updateAll(); createAllCharts(); } },
+      onClick: (e, elements) => { if (elements.length > 0) { selectedMonthIdx = elements[0].index; updateAll(); } },
       plugins: { legend: { display: false }, tooltip: { ...tooltipOpts, callbacks: { label: (ctx) => `CPA: €${ctx.raw.toFixed(2)}` } } },
       scales: { x: xOpts, y: { grid: gridOpts, ticks: { color: tc.textSecondary, font: { size: 11 }, callback: v => '€' + v }, beginAtZero: true } }
     }
@@ -378,7 +379,7 @@ function createAllCharts() {
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      onClick: (e, elements) => { if (elements.length > 0) { selectedMonthIdx = elements[0].index; updateAll(); createAllCharts(); } },
+      onClick: (e, elements) => { if (elements.length > 0) { selectedMonthIdx = elements[0].index; updateAll(); } },
       plugins: { legend: { display: false }, tooltip: tooltipOpts },
       scales: { x: xOpts, y: { grid: gridOpts, ticks: { color: tc.textSecondary, font: { size: 11 }, callback: v => v >= 1000 ? (v/1000).toFixed(1) + 'K' : v }, beginAtZero: true } }
     }
@@ -394,7 +395,7 @@ function createAllCharts() {
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      onClick: (e, elements) => { if (elements.length > 0) { selectedMonthIdx = elements[0].index; updateAll(); createAllCharts(); } },
+      onClick: (e, elements) => { if (elements.length > 0) { selectedMonthIdx = elements[0].index; updateAll(); } },
       plugins: { legend: { display: false }, tooltip: { ...tooltipOpts, callbacks: { label: (ctx) => `Показы: ${ctx.raw.toLocaleString('de-DE')}` } } },
       scales: { x: xOpts, y: { grid: gridOpts, ticks: { color: tc.textSecondary, font: { size: 11 }, callback: v => v >= 1000 ? (v/1000).toFixed(0) + 'K' : v }, beginAtZero: true } }
     }
@@ -410,7 +411,7 @@ function createAllCharts() {
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      onClick: (e, elements) => { if (elements.length > 0) { selectedMonthIdx = elements[0].index; updateAll(); createAllCharts(); } },
+      onClick: (e, elements) => { if (elements.length > 0) { selectedMonthIdx = elements[0].index; updateAll(); } },
       plugins: { legend: { display: false }, tooltip: { ...tooltipOpts, callbacks: { label: (ctx) => `CPC: €${ctx.raw.toFixed(2)}` } } },
       scales: { x: xOpts, y: { grid: gridOpts, ticks: { color: tc.textSecondary, font: { size: 11 }, callback: v => '€' + v.toFixed(2) }, beginAtZero: true } }
     }
