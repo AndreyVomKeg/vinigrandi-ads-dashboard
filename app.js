@@ -566,33 +566,22 @@ function buildBenchmarks() {
   grid.innerHTML = '';
 
   benchmarks.forEach(b => {
-    // diff > 0 means "good" (we beat market), diff < 0 means "bad"
-    const diff = b.lowerBetter
-      ? ((b.market - b.yours) / b.market * 100)
-      : ((b.yours - b.market) / b.market * 100);
-    const isGood = diff > 5;
-    const isBad = diff < -5;
-    const badgeClass = isGood ? 'good' : isBad ? 'bad' : 'neutral';
+    // Compare yours vs market
+    const yoursHigher = b.yours > b.market;
+    const pctDiff = b.market > 0 ? Math.abs((b.yours - b.market) / b.market * 100) : 0;
 
-    // Arrow matches direction word: "выше" → arrow_upward, "ниже" → arrow_downward
-    let badgeText, badgeIcon;
-    if (isGood) {
-      if (b.lowerBetter) {
-        badgeIcon = 'arrow_downward';
-        badgeText = Math.abs(diff).toFixed(0) + '% ниже рынка';
-      } else {
-        badgeIcon = 'arrow_upward';
-        badgeText = Math.abs(diff).toFixed(0) + '% выше рынка';
-      }
-    } else if (isBad) {
-      if (b.lowerBetter) {
-        badgeIcon = 'arrow_upward';
-        badgeText = Math.abs(diff).toFixed(0) + '% выше рынка';
-      } else {
-        badgeIcon = 'arrow_downward';
-        badgeText = Math.abs(diff).toFixed(0) + '% ниже рынка';
-      }
+    // "выше рынка" = green + arrow_upward, "ниже рынка" = red + arrow_downward
+    let badgeClass, badgeIcon, badgeText;
+    if (yoursHigher) {
+      badgeClass = 'good';
+      badgeIcon = 'arrow_upward';
+      badgeText = pctDiff.toFixed(0) + '% выше рынка';
+    } else if (pctDiff > 5) {
+      badgeClass = 'bad';
+      badgeIcon = 'arrow_downward';
+      badgeText = pctDiff.toFixed(0) + '% ниже рынка';
     } else {
+      badgeClass = 'neutral';
       badgeIcon = 'remove';
       badgeText = 'На уровне рынка';
     }
