@@ -703,6 +703,11 @@ tbody tr:last-child td { border-bottom: none; }
   font-weight: 900;
   font-variant-numeric: tabular-nums;
 }
+.benchmark-yours.color-blue { color: var(--google-blue); }
+.benchmark-yours.color-green { color: var(--google-green); }
+.benchmark-yours.color-red { color: var(--google-red); }
+.benchmark-yours.color-yellow { color: #e8a000; }
+[data-theme="dark"] .benchmark-yours.color-yellow { color: var(--google-yellow); }
 .benchmark-vs {
   font-size: 11px;
   color: var(--text-tertiary);
